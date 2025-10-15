@@ -12,7 +12,6 @@ const AboutSection: React.FC = () => {
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-[#FF6B35]/10 to-[#2BC48A]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-[#2BC48A]/10 to-[#FF6B35]/10 rounded-full blur-3xl"></div>
-
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8 animate-fade-in-left">
@@ -27,8 +26,8 @@ const AboutSection: React.FC = () => {
               At Tranfy, we believe that every athlete deserves the tools and
               knowledge to reach their full potential. Our comprehensive
               platform combines cutting-edge technology with proven fitness
-              science to deliver personalized solutions for nutrition
-              tracking, workout optimization, and performance enhancement.
+              science to deliver personalized solutions for nutrition tracking,
+              workout optimization, and performance enhancement.
             </p>
             <p className="text-xl text-gray-600 leading-relaxed font-medium">
               Whether you're a professional athlete, weekend warrior, or just

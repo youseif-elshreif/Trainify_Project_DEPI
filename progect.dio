@@ -1,0 +1,90 @@
+<mxfile host="65bd71144e">
+    <diagram id="DKa2GApFZwo3uTfHYqPl" name="Page-1">
+        <mxGraphModel dx="1685" dy="469" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="27" value="admin dashboard" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=3" parent="1" vertex="1">
+                    <mxGeometry x="95" y="600" width="330" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Home&lt;br&gt;store&lt;br&gt;Admin dashboard&lt;br&gt;user dashboard" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="120" y="200" width="110" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="3" target="7" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Admin" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="255" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="4" target="9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="640" y="240.0000000000001" as="sourcePoint"/>
+                        <mxPoint x="640" y="269.9999999999999" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" value="login user" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="440" y="180" width="120" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;font style=&quot;&quot;&gt;--add products&lt;br&gt;&lt;span&gt;--del products&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;span&gt;&lt;font style=&quot;&quot;&gt;--update products&lt;br&gt;//products = suplmints&lt;br&gt;&lt;/font&gt;--CRUD meals&lt;br&gt;--CRUD trainings&lt;br&gt;--Msgs&lt;br&gt;--See acounts and do actions&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="250" y="270" width="130" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="499.62" y="340" as="sourcePoint"/>
+                        <mxPoint x="499.62" y="380" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="9" value="meals&lt;br&gt;trainings&lt;br&gt;&lt;b&gt;overview&lt;br&gt;billing&lt;br&gt;store&lt;br&gt;calc&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="440" y="280" width="120" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="4, 10 , 15 , 20" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="440" y="420" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="21" target="23" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="unlogin user&lt;br&gt;visiror" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="590" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="" style="edgeStyle=none;html=1;" parent="1" source="23" target="21" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="650" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="store&lt;br&gt;calc" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="590" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="user management&lt;br&gt;subm&lt;br&gt;meals&lt;br&gt;trainings&lt;br&gt;msgs" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="100" y="600" width="110" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="login user dashboard" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="440" y="590" width="330" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="overview&lt;br&gt;meals&lt;br&gt;trainings&lt;br&gt;billing" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="440" y="590" width="90" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;span&gt;overview =&amp;gt; name , mail , phone , weight ,&amp;nbsp;&lt;/span&gt;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span&gt;meals =&amp;gt; all meals&amp;nbsp;&lt;/span&gt;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span&gt;meal page =&amp;gt; when click in spacific meal&lt;br&gt;trainings =&amp;gt; all&amp;nbsp;&lt;br&gt;&lt;/span&gt;&lt;span&gt;train page =&amp;gt; when click in spacific train&lt;br&gt;billing =&amp;gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=2" parent="1" vertex="1">
+                    <mxGeometry x="480" y="750" width="250" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" style="edgeStyle=none;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="28" target="28" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="210" y="640"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" value="&lt;font style=&quot;&quot;&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;kiven =&amp;gt; card =&amp;gt; for meals , subl and training&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;amr =&amp;gt;&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ahmed =&amp;gt; &lt;span style=&quot;color: rgb(255, 255, 255);&quot;&gt;d&lt;/span&gt;&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;steven =&amp;gt;&amp;nbsp;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;/font&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;youseif =&amp;gt;&amp;nbsp;&lt;/font&gt;&lt;span style=&quot;color: rgb(192, 192, 192);&quot;&gt;dashborad layout&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="-631" y="170" width="390" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;calc&amp;nbsp;&lt;br&gt;store&lt;br&gt;subl&lt;br&gt;login&lt;br&gt;signup&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;div&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;user dashboard&amp;nbsp;&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; profile&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; orders&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; meals&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; meal&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; trainings&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; training&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; plans&lt;br&gt;&lt;br&gt;&lt;/font&gt;&lt;font style=&quot;&quot;&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;span&gt;admin dashboard&amp;nbsp;&lt;/span&gt;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span&gt;=&amp;gt; overview&lt;/span&gt;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span&gt;=&amp;gt; orders&lt;/span&gt;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span&gt;=&amp;gt; meals&lt;/span&gt;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span&gt;=&amp;gt; trainings&lt;/span&gt;&lt;br style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30);&quot;&gt;&lt;span style=&quot;scrollbar-color: rgb(75, 75, 75) rgb(27, 29, 30); white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;/font&gt;&lt;span&gt;&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;=&amp;gt; plans&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; msgs&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;=&amp;gt; users&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;span style=&quot;color: rgb(192, 192, 192);&quot;&gt;dashborad layout&lt;/span&gt;&lt;span&gt;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="-631" y="289" width="391" height="401" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="React&lt;br&gt;react context&lt;br&gt;tailwind&lt;div&gt;formik&lt;br&gt;yup&lt;br&gt;react&lt;br&gt;react-icons&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-640" y="733.5" width="410" height="205" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

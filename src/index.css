@@ -178,6 +178,10 @@ html {
   background: linear-gradient(135deg, #ff6b35, #e55a2b);
   box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
   transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
 }
 
 .btn-premium:hover {
