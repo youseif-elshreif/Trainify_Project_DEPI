@@ -18,12 +18,11 @@ const ContactSection: React.FC = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-20 animate-fade-in-up">
           <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
-            Get in{" "}
-            <span className="gradient-text animate-gradient">Touch</span>
+            Get in <span className="gradient-text animate-gradient">Touch</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to transform your fitness journey? We'd love to hear from
-            you and help you achieve your goals.
+            Ready to transform your fitness journey? We'd love to hear from you
+            and help you achieve your goals.
           </p>
         </div>
 

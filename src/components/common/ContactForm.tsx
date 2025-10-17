@@ -1,6 +1,8 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import FormField from "../shared/FormField";
+import Button from "../shared/Button";
 
 const ContactForm: React.FC = () => {
   const validationSchema = Yup.object({
@@ -25,7 +27,7 @@ const ContactForm: React.FC = () => {
           Fill out the form below and we'll get back to you within 24 hours.
         </p>
       </div>
-      
+
       <Formik
         initialValues={{
           name: "",
@@ -44,65 +46,37 @@ const ContactForm: React.FC = () => {
       >
         {({ isSubmitting }) => (
           <Form className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Full Name
-              </label>
-              <Field
-                type="text"
-                name="name"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent transition-all"
-                placeholder="Enter your name"
-              />
-              <ErrorMessage
-                name="name"
-                component="div"
-                className="text-red-500 text-sm mt-1"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <Field
-                type="email"
-                name="email"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent transition-all"
-                placeholder="Enter your email"
-              />
-              <ErrorMessage
-                name="email"
-                component="div"
-                className="text-red-500 text-sm mt-1"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Message
-              </label>
-              <Field
-                as="textarea"
-                name="message"
-                rows={5}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#FF6B35] focus:border-transparent transition-all resize-none"
-                placeholder="Tell us about your fitness goals..."
-              />
-              <ErrorMessage
-                name="message"
-                component="div"
-                className="text-red-500 text-sm mt-1"
-              />
-            </div>
-            
-            <button
+            <FormField
+              name="name"
+              label="Full Name"
+              type="text"
+              placeholder="Enter your name"
+            />
+
+            <FormField
+              name="email"
+              label="Email Address"
+              type="email"
+              placeholder="Enter your email"
+            />
+
+            <FormField
+              name="message"
+              label="Message"
+              as="textarea"
+              rows={5}
+              placeholder="Tell us about your fitness goals..."
+            />
+
+            <Button
               type="submit"
+              variant="primary"
+              size="lg"
               disabled={isSubmitting}
-              className="w-full btn-premium text-white py-4 rounded-2xl font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {isSubmitting ? "Sending..." : "Send Message"}
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>
