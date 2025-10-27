@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import Layout from "../components/dashboards/Layout";
 import Topbar from "../components/dashboards/Topbar";
 import DataTable from "../components/dashboards/DataTable";
-import AddEditModal from "../components/dashboards/AddEditModal";
+import MealModal from "../components/dashboards/MealModal";
 import ConfirmDialog from "../components/dashboards/ConfirmDialog";
 import MealPreviewModal from "../components/dashboards/MealPreviewModal";
 import { meals, formatDate, getStatusBadge, type Meal } from "../data/sample";
@@ -55,11 +55,11 @@ const MealPlansPage: React.FC = () => {
     setPreviewModalOpen(true);
   };
 
-  const handleSubmit = (values: Record<string, unknown>) => {
-    console.log("Submitting meal plan values:", values);
-    // Implement save logic
+  const handleSubmit = async (mealData: Omit<Meal, "id" | "createdAt">) => {
+    console.log("Submitting meal data:", mealData);
+    // Implement save logic here
+    // For now, just close the modal
     setAddEditModalOpen(false);
-    return Promise.resolve();
   };
 
   const handleConfirmDelete = () => {
@@ -202,11 +202,11 @@ const MealPlansPage: React.FC = () => {
         </div>
 
         {/* Add/Edit Modal */}
-        <AddEditModal
+        <MealModal
           open={addEditModalOpen}
           onClose={() => setAddEditModalOpen(false)}
           onSubmit={handleSubmit}
-          initialValues={selectedItem ? { ...selectedItem } : {}}
+          initialValues={selectedItem}
           title={selectedItem ? "Edit Meal" : "Add New Meal"}
         />
 
