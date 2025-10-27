@@ -9,4 +9,4 @@ export { default as BackgroundDecoration } from "./BackgroundDecoration";
 export { default as SocialLink } from "./SocialLink";
 
 // Types
-export type { ButtonVariant, ButtonSize } from "./Button";
+export type { ButtonVariant, ButtonSize, ButtonProps } from "./Button";

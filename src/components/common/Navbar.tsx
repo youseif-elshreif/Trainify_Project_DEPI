@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 interface NavbarProps {
   isLoggedIn?: boolean;
@@ -117,13 +118,17 @@ const Navbar: React.FC<NavbarProps> = ({
                 >
                   Login
                 </button>
-                <button className="bg-gradient-to-r from-[#FF6B35] to-[#e55a2b] text-white px-8 py-3 rounded-xl font-semibold hover:from-[#e55a2b] hover:to-[#d14c1f] hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  Register
-                </button>
+                <Link
+                  to="/dashboard"
+                  className="bg-gradient-to-r from-[#FF6B35] to-[#e55a2b] text-white px-8 py-3 rounded-xl font-semibold hover:from-[#e55a2b] hover:to-[#d14c1f] hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
+                  Dashboard
+                </Link>
               </>
             ) : (
               <>
-                <button
+                <Link
+                  to="/dashboard"
                   className={`px-6 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105 ${
                     isScrolled
                       ? "text-gray-700 hover:text-[#FF6B35] hover:bg-orange-50 border border-transparent hover:border-[#FF6B35]/20"
@@ -131,7 +136,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   }`}
                 >
                   Dashboard
-                </button>
+                </Link>
                 <button className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
                   Logout
                 </button>
