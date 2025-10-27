@@ -6,6 +6,7 @@ export { default as OverviewCards } from "./OverviewCards";
 export { default as DataTable } from "./DataTable";
 export { default as AddEditModal } from "./AddEditModal";
 export { default as ConfirmDialog } from "./ConfirmDialog";
+export { default as MealPreviewModal } from "./MealPreviewModal";
 
 // Re-export DataTable sub-components
 export { Actions, EmptyState, Pagination } from "./DataTable";

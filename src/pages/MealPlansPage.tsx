@@ -14,12 +14,8 @@ import Topbar from "../components/dashboards/Topbar";
 import DataTable from "../components/dashboards/DataTable";
 import AddEditModal from "../components/dashboards/AddEditModal";
 import ConfirmDialog from "../components/dashboards/ConfirmDialog";
-import {
-  mealPlans,
-  formatPrice,
-  getStatusBadge,
-  type MealPlan,
-} from "../data/sample";
+import MealPreviewModal from "../components/dashboards/MealPreviewModal";
+import { meals, formatDate, getStatusBadge, type Meal } from "../data/sample";
 import type {
   Column,
   ActionsConfig,
@@ -29,11 +25,13 @@ const MealPlansPage: React.FC = () => {
   // State management
   const [addEditModalOpen, setAddEditModalOpen] = useState(false);
   const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<MealPlan | null>(null);
+  const [selectedItem, setSelectedItem] = useState<Meal | null>(null);
+  const [previewModalOpen, setPreviewModalOpen] = useState(false);
+  const [previewingMeal, setPreviewingMeal] = useState<Meal | null>(null);
 
   // Event handlers
   const handleSearch = (query: string) => {
-    console.log("Searching meal plans for:", query);
+    console.log("Searching meals for:", query);
     // Implement search logic
   };
 
@@ -42,19 +40,19 @@ const MealPlansPage: React.FC = () => {
     setAddEditModalOpen(true);
   };
 
-  const handleEdit = (item: MealPlan) => {
+  const handleEdit = (item: Meal) => {
     setSelectedItem(item);
     setAddEditModalOpen(true);
   };
 
-  const handleDelete = (item: MealPlan) => {
+  const handleDelete = (item: Meal) => {
     setSelectedItem(item);
     setConfirmDialogOpen(true);
   };
 
-  const handlePreview = (item: MealPlan) => {
-    console.log("Previewing meal plan:", item);
-    // Implement preview logic
+  const handlePreview = (item: Meal) => {
+    setPreviewingMeal(item);
+    setPreviewModalOpen(true);
   };
 
   const handleSubmit = (values: Record<string, unknown>) => {
@@ -71,23 +69,64 @@ const MealPlansPage: React.FC = () => {
     setSelectedItem(null);
   };
 
+  // Helper function to render plan badge
+  const getPlanBadge = (plan: string) => {
+    const badges = {
+      gold: "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg",
+      platinum:
+        "bg-gradient-to-r from-gray-400 to-gray-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg",
+      diamond:
+        "bg-gradient-to-r from-blue-400 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg",
+    };
+    return badges[plan as keyof typeof badges];
+  };
+
   // Column definitions
-  const columns: Column<MealPlan>[] = [
-    { key: "name", title: "Name", sortable: true },
-    { key: "type", title: "Type", sortable: true },
-    { key: "calories", title: "Calories", sortable: true, align: "center" },
+  const columns: Column<Meal>[] = [
+    { key: "name", title: "Meal Name", sortable: true },
     {
-      key: "duration",
-      title: "Duration (days)",
+      key: "calories",
+      title: "Calories",
       sortable: true,
       align: "center",
+      render: (row) => `${row.calories} cal`,
     },
     {
-      key: "price",
-      title: "Price",
+      key: "plan",
+      title: "Plan",
       sortable: true,
-      align: "right",
-      render: (row) => formatPrice(row.price),
+      align: "center",
+      render: (row) => (
+        <span className={getPlanBadge(row.plan)}>{row.plan.toUpperCase()}</span>
+      ),
+    },
+    {
+      key: "category",
+      title: "Category",
+      sortable: true,
+      render: (row) => <span className="capitalize">{row.category}</span>,
+    },
+    {
+      key: "difficulty",
+      title: "Difficulty",
+      sortable: true,
+      align: "center",
+      render: (row) => {
+        const colors = {
+          easy: "text-green-600 bg-green-100",
+          medium: "text-yellow-600 bg-yellow-100",
+          hard: "text-red-600 bg-red-100",
+        };
+        return (
+          <span
+            className={`px-2 py-1 rounded-full text-xs font-medium ${
+              colors[row.difficulty]
+            }`}
+          >
+            {row.difficulty}
+          </span>
+        );
+      },
     },
     {
       key: "status",
@@ -96,10 +135,16 @@ const MealPlansPage: React.FC = () => {
         <span className={getStatusBadge(row.status)}>{row.status}</span>
       ),
     },
+    {
+      key: "createdAt",
+      title: "Created",
+      sortable: true,
+      render: (row) => formatDate(row.createdAt),
+    },
   ];
 
   // Actions configuration
-  const actionsConfig: ActionsConfig<MealPlan> = {
+  const actionsConfig: ActionsConfig<Meal> = {
     showEdit: true,
     showDelete: true,
     showPreview: true,
@@ -113,9 +158,9 @@ const MealPlansPage: React.FC = () => {
       <div className="min-h-screen bg-gray-50">
         {/* Topbar */}
         <Topbar
-          title="Meal Plans"
+          title="Meals"
           search={{
-            placeholder: "Search meal plans...",
+            placeholder: "Search meals...",
             onSearch: handleSearch,
           }}
           onAdd={handleAdd}
@@ -125,10 +170,11 @@ const MealPlansPage: React.FC = () => {
           {/* Page Header */}
           <div className="mb-6">
             <h1 className="text-2xl font-bold text-gray-900">
-              Meal Plans Management
+              Meals Management
             </h1>
             <p className="text-gray-600 mt-2">
-              Create and manage nutrition plans for different fitness goals.
+              Manage individual meal recipes for Gold, Platinum, and Diamond
+              subscription plans.
             </p>
           </div>
 
@@ -136,7 +182,7 @@ const MealPlansPage: React.FC = () => {
           <div className="space-y-6">
             <DataTable
               columns={columns as unknown as Column<Record<string, unknown>>[]}
-              data={mealPlans as unknown as Record<string, unknown>[]}
+              data={meals as unknown as Record<string, unknown>[]}
               actions={
                 actionsConfig as unknown as ActionsConfig<
                   Record<string, unknown>
@@ -146,7 +192,7 @@ const MealPlansPage: React.FC = () => {
               pagination={{
                 page: 1,
                 pageSize: 10,
-                total: mealPlans.length,
+                total: meals.length,
                 onChange: (page) => console.log("Page changed:", page),
               }}
               selectable={true}
@@ -161,18 +207,28 @@ const MealPlansPage: React.FC = () => {
           onClose={() => setAddEditModalOpen(false)}
           onSubmit={handleSubmit}
           initialValues={selectedItem ? { ...selectedItem } : {}}
-          title={selectedItem ? "Edit Meal Plan" : "Add New Meal Plan"}
+          title={selectedItem ? "Edit Meal" : "Add New Meal"}
         />
 
         {/* Confirm Delete Dialog */}
         <ConfirmDialog
           open={confirmDialogOpen}
-          title="Delete Meal Plan"
+          title="Delete Meal"
           description={`Are you sure you want to delete "${selectedItem?.name}"? This action cannot be undone.`}
           onConfirm={handleConfirmDelete}
           onCancel={() => setConfirmDialogOpen(false)}
           confirmText="Delete"
           variant="danger"
+        />
+
+        {/* Meal Preview Modal */}
+        <MealPreviewModal
+          open={previewModalOpen}
+          meal={previewingMeal}
+          onClose={() => {
+            setPreviewModalOpen(false);
+            setPreviewingMeal(null);
+          }}
         />
       </div>
     </Layout>
