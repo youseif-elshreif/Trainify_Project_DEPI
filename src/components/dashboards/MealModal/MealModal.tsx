@@ -158,36 +158,52 @@ const MealModal: React.FC<MealModalProps> = ({
     }
   };
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
   if (!open) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 overflow-y-auto"
-      onClick={handleBackdropClick}
-    >
-      {/* Backdrop */}
-      <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    <div className="fixed inset-0 z-50 overflow-y-auto">
+      {/* Enhanced Backdrop */}
+      <div
+        className="fixed inset-0 bg-gradient-to-br from-black/70 via-black/60 to-black/70 backdrop-blur-lg"
+        onClick={onClose}
+      />
 
-        {/* Modal panel */}
-        <div className="relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-          {/* Header with gradient */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold text-white">{title}</h3>
-              <button
-                onClick={onClose}
-                className="rounded-full p-2 text-white hover:bg-white hover:bg-opacity-20 transition-colors duration-200"
-              >
-                <HiX className="h-5 w-5" />
-              </button>
-            </div>
+      {/* Modal Container */}
+      <div className="flex min-h-full items-center justify-center p-4">
+        <div
+          className="
+          bg-white w-full max-w-4xl rounded-3xl shadow-2xl
+          transform transition-all duration-500 scale-100 opacity-100
+          border border-gray-100 overflow-hidden max-h-[90vh] overflow-y-auto
+          animate-in slide-in-from-bottom-4 fade-in-0
+        "
+          style={{
+            animation: "modalSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Enhanced Header */}
+          <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 p-8 pb-6">
+            <h3 className="text-2xl font-bold text-white pr-16">{title}</h3>
+            
+            {/* Close button */}
+            <button
+              type="button"
+              onClick={onClose}
+              className="
+                absolute top-4 right-4 z-10 p-3 rounded-xl 
+                hover:bg-white/20 transition-all duration-200 
+                hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50
+              "
+              aria-label="Close modal"
+              tabIndex={0}
+            >
+              <HiX className="w-6 h-6 text-white" />
+            </button>
+
+            {/* Decorative elements */}
+            <div className="absolute -top-2 -right-2 w-20 h-20 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+            <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-white/10 rounded-full blur-lg pointer-events-none"></div>
           </div>
 
           {/* Form */}
@@ -505,26 +521,42 @@ const MealModal: React.FC<MealModalProps> = ({
               </div>
             </div>
 
-            {/* Form Actions */}
-            <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-gray-200">
+            {/* Enhanced Form Actions */}
+            <div className="flex gap-4 px-8 pb-8 pt-6 border-t border-gray-100 mx-8">
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-6 py-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg font-medium transition-colors duration-200"
                 disabled={isSubmitting}
+                className="
+                  flex-1 px-6 py-3 text-gray-700 font-semibold rounded-2xl
+                  border-2 border-gray-200 hover:border-gray-300
+                  transition-all duration-300 hover:shadow-md
+                  hover:bg-gray-50 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed
+                "
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting || !formData.name.trim()}
-                className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                className="
+                  flex-1 px-6 py-3 text-white font-bold rounded-2xl
+                  transition-all duration-300 hover:shadow-lg
+                  transform hover:scale-105 active:scale-95
+                  bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 
+                  hover:shadow-blue-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+                "
               >
-                {isSubmitting
-                  ? "Saving..."
-                  : initialValues
-                  ? "Update Meal"
-                  : "Create Meal"}
+                {isSubmitting ? (
+                  <>
+                    <span className="animate-spin inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full mr-2"></span>
+                    Saving...
+                  </>
+                ) : initialValues ? (
+                  "✏️ Update Meal"
+                ) : (
+                  "✨ Create Meal"
+                )}
               </button>
             </div>
           </form>

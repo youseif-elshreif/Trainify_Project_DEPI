@@ -26,7 +26,6 @@ function App() {
         <Route path="/dashboard/meals" element={<MealPlansPage />} />
         <Route path="/dashboard/training" element={<TrainingProgramsPage />} />
         <Route path="/dashboard/users" element={<UsersPage />} />
-
         {/* Fallback Route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
