@@ -78,6 +78,26 @@ const AddEditModal: React.FC<AddEditModalProps> = ({
     }
   }, [open, initialValues]);
 
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && open) {
+        onClose();
+      }
+    };
+
+    if (open) {
+      document.addEventListener("keydown", handleEscape);
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "unset";
+    };
+  }, [open, onClose]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -121,14 +141,17 @@ const AddEditModal: React.FC<AddEditModalProps> = ({
           style={{
             animation: "modalSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Enhanced Header */}
           <div className="relative bg-gradient-to-r from-[#FF6B35] to-[#2BC48A] p-6 text-white">
             {/* Close button - positioned absolutely for better accessibility */}
             <button
+              type="button"
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 p-3 rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-110"
+              className="absolute top-4 right-4 z-10 p-3 rounded-xl hover:bg-white/20 transition-all duration-200 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
               aria-label="Close modal"
+              tabIndex={0}
             >
               <HiX className="w-6 h-6 text-white" />
             </button>
