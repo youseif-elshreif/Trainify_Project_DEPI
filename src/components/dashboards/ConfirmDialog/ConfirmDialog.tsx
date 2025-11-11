@@ -1,5 +1,5 @@
 import React from "react";
-import { HiExclamationCircle, HiX } from "react-icons/hi";
+import { HiExclamationCircle, HiX, HiInformationCircle } from "react-icons/hi";
 
 interface ConfirmDialogProps {
   open: boolean;
@@ -153,12 +153,22 @@ const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
                 }
               `}
             >
-              {variant === "danger"
-                ? "⚠️ "
-                : variant === "warning"
-                ? "⚡ "
-                : "ℹ️ "}
-              {confirmText}
+              {variant === "danger" ? (
+                <>
+                  <HiExclamationCircle className="w-4 h-4 inline-block mr-1" />
+                  {confirmText}
+                </>
+              ) : variant === "warning" ? (
+                <>
+                  <HiExclamationCircle className="w-4 h-4 inline-block mr-1" />
+                  {confirmText}
+                </>
+              ) : (
+                <>
+                  <HiInformationCircle className="w-4 h-4 inline-block mr-1" />
+                  {confirmText}
+                </>
+              )}
             </button>
           </div>
         </div>

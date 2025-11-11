@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HiX } from "react-icons/hi";
+import { HiX, HiSparkles, HiPlusCircle } from "react-icons/hi";
 
 interface AddEditModalProps {
   open: boolean;
@@ -281,8 +281,22 @@ const AddEditModal: React.FC<AddEditModalProps> = ({
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 )}
-                <span className={loading ? "opacity-0" : "opacity-100"}>
-                  {isEdit ? "✨ Update" : "🚀 Create"}
+                <span
+                  className={
+                    loading
+                      ? "opacity-0"
+                      : "opacity-100 flex items-center gap-2"
+                  }
+                >
+                  {isEdit ? (
+                    <>
+                      <HiSparkles className="w-4 h-4" /> Update
+                    </>
+                  ) : (
+                    <>
+                      <HiPlusCircle className="w-4 h-4" /> Create
+                    </>
+                  )}
                 </span>
               </button>
             </div>

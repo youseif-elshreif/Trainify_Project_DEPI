@@ -2,7 +2,7 @@
  * Dashboard Page for Trainify Admin Panel
  *
  * This is the main dashboard overview page showing key metrics and overview cards.
- * Individual sections (supplements, meals, training, users) have their own dedicated pages.
+ * Individual sections (meals, training, users) have their own dedicated pages.
  *
  * Project Structure:
  * - This is a Vite + React project (not Next.js)
@@ -18,6 +18,7 @@ import Layout from "../components/dashboards/Layout";
 import Topbar from "../components/dashboards/Topbar";
 import OverviewCards from "../components/dashboards/OverviewCards";
 import { overview } from "../data/sample";
+import { HiCake, HiLightningBolt, HiUserGroup } from "react-icons/hi";
 
 const DashboardPage: React.FC = () => {
   // Event handlers
@@ -49,36 +50,21 @@ const DashboardPage: React.FC = () => {
               Welcome to Trainify Dashboard
             </h3>
             <p className="text-gray-700 mb-8 text-lg">
-              Manage your supplements, meal plans, training programs, and users
-              from this central dashboard. Use the sidebar navigation to access
-              different sections.
+              Manage your meal plans, training programs, and users from this
+              central dashboard. Use the sidebar navigation to access different
+              sections.
             </p>
 
             {/* Quick Navigation Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              <button
-                className="group bg-gradient-to-br from-[#FF6B35] to-[#FF8A50] hover:from-[#FF5722] hover:to-[#FF6B35] text-white p-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-white/20"
-                onClick={() =>
-                  (window.location.href = "/dashboard/supplements")
-                }
-              >
-                <div className="text-center">
-                  <div className="text-4xl mb-3">💊</div>
-                  <span className="block text-xl font-bold mb-2">
-                    Supplements
-                  </span>
-                  <span className="text-white/90 text-sm">
-                    Manage products & inventory
-                  </span>
-                </div>
-              </button>
-
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <button
                 className="group bg-gradient-to-br from-[#2BC48A] to-[#4ECDC4] hover:from-[#26A69A] hover:to-[#2BC48A] text-white p-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border-2 border-transparent hover:border-white/20"
                 onClick={() => (window.location.href = "/dashboard/meals")}
               >
                 <div className="text-center">
-                  <div className="text-4xl mb-3">🍽️</div>
+                  <div className="flex justify-center mb-3">
+                    <HiCake className="w-10 h-10" />
+                  </div>
                   <span className="block text-xl font-bold mb-2">
                     Meal Plans
                   </span>
@@ -93,7 +79,9 @@ const DashboardPage: React.FC = () => {
                 onClick={() => (window.location.href = "/dashboard/training")}
               >
                 <div className="text-center">
-                  <div className="text-4xl mb-3">💪</div>
+                  <div className="flex justify-center mb-3">
+                    <HiLightningBolt className="w-10 h-10" />
+                  </div>
                   <span className="block text-xl font-bold mb-2">Training</span>
                   <span className="text-white/90 text-sm">
                     Workout programs
@@ -106,7 +94,9 @@ const DashboardPage: React.FC = () => {
                 onClick={() => (window.location.href = "/dashboard/users")}
               >
                 <div className="text-center">
-                  <div className="text-4xl mb-3">👥</div>
+                  <div className="flex justify-center mb-3">
+                    <HiUserGroup className="w-10 h-10" />
+                  </div>
                   <span className="block text-xl font-bold mb-2">Users</span>
                   <span className="text-white/90 text-sm">
                     Member management

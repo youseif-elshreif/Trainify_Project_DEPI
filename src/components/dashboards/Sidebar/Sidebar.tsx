@@ -2,7 +2,6 @@ import React from "react";
 import { HiX } from "react-icons/hi";
 import {
   HiHome,
-  HiCube,
   HiDocumentText,
   HiAcademicCap,
   HiUsers,
@@ -27,7 +26,6 @@ interface SidebarProps {
 
 const defaultIcons: { [key: string]: React.ReactNode } = {
   dashboard: <HiHome className="w-5 h-5" />,
-  supplements: <HiCube className="w-5 h-5" />,
   meals: <HiDocumentText className="w-5 h-5" />,
   training: <HiAcademicCap className="w-5 h-5" />,
   users: <HiUsers className="w-5 h-5" />,

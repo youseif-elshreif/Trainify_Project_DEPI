@@ -7,29 +7,79 @@ import {
 import { LandingPage } from "./components";
 import {
   DashboardPage,
-  SupplementsPage,
   MealPlansPage,
   TrainingProgramsPage,
   UsersPage,
 } from "./pages";
+import UserDashboard from "./pages/UserDashboard";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import NavbarWrapper from "./components/common/NavbarWrapper";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Landing Page Route */}
-        <Route path="/" element={<LandingPage />} />
+    <AuthProvider>
+      <Router>
+        <NavbarWrapper />
+        <Routes>
+          {/* Landing Page Route */}
+          <Route path="/" element={<LandingPage />} />
 
-        {/* Dashboard Routes */}
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/dashboard/supplements" element={<SupplementsPage />} />
-        <Route path="/dashboard/meals" element={<MealPlansPage />} />
-        <Route path="/dashboard/training" element={<TrainingProgramsPage />} />
-        <Route path="/dashboard/users" element={<UsersPage />} />
-        {/* Fallback Route */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+          {/* Authentication Routes */}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          {/* User Dashboard Route - Protected (User Role) */}
+          <Route
+            path="/user-dashboard"
+            element={
+              <ProtectedRoute requireRole="user">
+                <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Admin Dashboard Routes - Protected (Admin Role) */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute requireRole="admin">
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/meals"
+            element={
+              <ProtectedRoute requireRole="admin">
+                <MealPlansPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/training"
+            element={
+              <ProtectedRoute requireRole="admin">
+                <TrainingProgramsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/users"
+            element={
+              <ProtectedRoute requireRole="admin">
+                <UsersPage />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Fallback Route */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

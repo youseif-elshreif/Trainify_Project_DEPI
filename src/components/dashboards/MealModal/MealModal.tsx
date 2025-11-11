@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HiX, HiTrash, HiPlus } from "react-icons/hi";
+import { HiX, HiTrash, HiPlus, HiPencil, HiSparkles } from "react-icons/hi";
 import type { Meal } from "../../../data/sample";
 
 interface MealModalProps {
@@ -185,7 +185,7 @@ const MealModal: React.FC<MealModalProps> = ({
           {/* Enhanced Header */}
           <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 p-8 pb-6">
             <h3 className="text-2xl font-bold text-white pr-16">{title}</h3>
-            
+
             {/* Close button */}
             <button
               type="button"
@@ -553,9 +553,15 @@ const MealModal: React.FC<MealModalProps> = ({
                     Saving...
                   </>
                 ) : initialValues ? (
-                  "✏️ Update Meal"
+                  <>
+                    <HiPencil className="w-4 h-4 inline-block mr-1" />
+                    Update Meal
+                  </>
                 ) : (
-                  "✨ Create Meal"
+                  <>
+                    <HiSparkles className="w-4 h-4 inline-block mr-1" />
+                    Create Meal
+                  </>
                 )}
               </button>
             </div>

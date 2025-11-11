@@ -1,27 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 interface NavbarProps {
   isLoggedIn?: boolean;
   onScrollToSection: (sectionId: string) => void;
+  forceScrolled?: boolean;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   isLoggedIn = false,
   onScrollToSection,
+  forceScrolled = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(forceScrolled);
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (forceScrolled) {
+      setIsScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [forceScrolled]);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -29,6 +39,12 @@ const Navbar: React.FC<NavbarProps> = ({
   ) => {
     e.preventDefault();
     onScrollToSection(sectionId);
+    setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
     setIsMenuOpen(false);
   };
 
@@ -109,7 +125,8 @@ const Navbar: React.FC<NavbarProps> = ({
           <div className="hidden md:flex items-center space-x-3 animate-fade-in-right">
             {!isLoggedIn ? (
               <>
-                <button
+                <Link
+                  to="/login"
                   className={`px-6 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105 ${
                     isScrolled
                       ? "text-gray-700 hover:text-[#FF6B35] hover:bg-orange-50 border border-transparent hover:border-[#FF6B35]/20"
@@ -117,18 +134,18 @@ const Navbar: React.FC<NavbarProps> = ({
                   }`}
                 >
                   Login
-                </button>
+                </Link>
                 <Link
-                  to="/dashboard"
+                  to="/register"
                   className="bg-gradient-to-r from-[#FF6B35] to-[#e55a2b] text-white px-8 py-3 rounded-xl font-semibold hover:from-[#e55a2b] hover:to-[#d14c1f] hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
-                  Dashboard
+                  Register
                 </Link>
               </>
             ) : (
               <>
                 <Link
-                  to="/dashboard"
+                  to="/user-dashboard"
                   className={`px-6 py-2 rounded-xl font-medium transition-all duration-300 hover:scale-105 ${
                     isScrolled
                       ? "text-gray-700 hover:text-[#FF6B35] hover:bg-orange-50 border border-transparent hover:border-[#FF6B35]/20"
@@ -137,9 +154,38 @@ const Navbar: React.FC<NavbarProps> = ({
                 >
                   Dashboard
                 </Link>
-                <button className="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+
+                <button
+                  onClick={handleLogout}
+                  className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-xl font-semibold hover:from-red-600 hover:to-red-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+                >
                   Logout
                 </button>
+
+                {/* User Info */}
+                <div className="flex items-center gap-2 ml-2 px-3 py-2 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#2BC48A] flex items-center justify-center">
+                    <span className="text-white font-semibold text-sm">
+                      {user?.name.charAt(0).toUpperCase() || "U"}
+                    </span>
+                  </div>
+                  <div className="hidden lg:block">
+                    <p
+                      className={`text-sm font-medium ${
+                        isScrolled ? "text-gray-900" : "text-white"
+                      }`}
+                    >
+                      {user?.name || "User"}
+                    </p>
+                    <p
+                      className={`text-xs ${
+                        isScrolled ? "text-gray-500" : "text-white/70"
+                      }`}
+                    >
+                      {user?.email || "user@trainify.com"}
+                    </p>
+                  </div>
+                </div>
               </>
             )}
           </div>
@@ -194,19 +240,51 @@ const Navbar: React.FC<NavbarProps> = ({
               <div className="pt-4 border-t border-gray-200 space-y-3">
                 {!isLoggedIn ? (
                   <>
-                    <button className="block w-full text-left text-gray-700 font-medium hover:text-[#FF6B35] hover:bg-orange-50 px-3 py-2 rounded-lg transition-all duration-300">
+                    <Link
+                      to="/login"
+                      className="block w-full text-left text-gray-700 font-medium hover:text-[#FF6B35] hover:bg-orange-50 px-3 py-2 rounded-lg transition-all duration-300"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       Login
-                    </button>
-                    <button className="block w-full bg-gradient-to-r from-[#FF6B35] to-[#e55a2b] text-white px-4 py-3 rounded-lg font-medium hover:from-[#e55a2b] hover:to-[#d14c1f] transition-all duration-300 shadow-lg">
+                    </Link>
+                    <Link
+                      to="/register"
+                      className="block w-full bg-gradient-to-r from-[#FF6B35] to-[#e55a2b] text-white px-4 py-3 rounded-lg font-medium hover:from-[#e55a2b] hover:to-[#d14c1f] transition-all duration-300 shadow-lg text-center"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       Register
-                    </button>
+                    </Link>
                   </>
                 ) : (
                   <>
-                    <button className="block w-full text-left text-gray-700 font-medium hover:text-[#FF6B35] hover:bg-orange-50 px-3 py-2 rounded-lg transition-all duration-300">
+                    {/* User Info in Mobile */}
+                    <div className="flex items-center gap-3 px-3 py-3 bg-gradient-to-r from-orange-50 to-purple-50 rounded-lg mb-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#FF6B35] to-[#2BC48A] flex items-center justify-center flex-shrink-0">
+                        <span className="text-white font-semibold">
+                          {user?.name.charAt(0).toUpperCase() || "U"}
+                        </span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-medium text-gray-900 truncate">
+                          {user?.name || "User"}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {user?.email || "user@trainify.com"}
+                        </p>
+                      </div>
+                    </div>
+
+                    <Link
+                      to="/user-dashboard"
+                      className="block w-full text-left text-gray-700 font-medium hover:text-[#FF6B35] hover:bg-orange-50 px-3 py-2 rounded-lg transition-all duration-300"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
                       Dashboard
-                    </button>
-                    <button className="block w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 rounded-lg font-medium hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg">
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-3 rounded-lg font-medium hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg"
+                    >
                       Logout
                     </button>
                   </>

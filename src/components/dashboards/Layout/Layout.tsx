@@ -53,13 +53,6 @@ const Layout: React.FC<LayoutProps> = ({ children, sidebarConfig }) => {
       active: currentPath === "/dashboard",
     },
     {
-      id: "supplements",
-      title: "Supplements",
-      href: "/dashboard/supplements",
-      badge: 86,
-      active: currentPath === "/dashboard/supplements",
-    },
-    {
       id: "meals",
       title: "Meal Plans",
       href: "/dashboard/meals",
