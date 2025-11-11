@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { HiSearch, HiPlus, HiMenu, HiLogout } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../shared";
@@ -23,7 +23,6 @@ const Topbar: React.FC<TopbarProps> = ({
   onAdd,
   hideMenuButton = false,
 }) => {
-  const [searchQuery, setSearchQuery] = useState("");
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -37,23 +36,7 @@ const Topbar: React.FC<TopbarProps> = ({
     setMobileSidebarOpen = undefined;
   }
 
-  // Debounced search handler
-  const handleSearchChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setSearchQuery(value);
-
-      if (search?.onSearch) {
-        // Simple debounce implementation
-        const timeoutId = setTimeout(() => {
-          search.onSearch(value);
-        }, 300);
-
-        return () => clearTimeout(timeoutId);
-      }
-    },
-    [search]
-  );
+  // If search config is provided, a simple search UI could be added later.
 
   const handleLogout = () => {
     logout();

@@ -37,6 +37,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const login = (email: string, password: string, role: "admin" | "user") => {
+    // Mark password as used for now (demo only) to satisfy TS no-unused-vars
+    void password;
     // Simple demo login logic
     const userData: User = {
       email,
